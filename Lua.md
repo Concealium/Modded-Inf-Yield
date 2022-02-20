@@ -11678,21 +11678,24 @@ end)
 
 addcmd('hitbox',{},function(args, speaker)
 	local players = getPlayer(args[1], speaker)
-	for i,v in pairs(players) do
-		if Players[v] ~= speaker and Players[v].Character:FindFirstChild('HumanoidRootPart') then
-			local sizeArg = tonumber(args[2])
-			local Size = Vector3.new(sizeArg,sizeArg,sizeArg)
-			local Root = Players[v].Character:FindFirstChild('HumanoidRootPart')
-			if Root:IsA("BasePart") then
-				if not args[2] or sizeArg == 1 then
-					Root.Size = Vector3.new(2,1,1)
-					Root.Transparency = 0.4
-				else
-					Root.Size = Size
-					Root.Transparency = 0.4
+	while (true) do
+		for i,v in pairs(players) do
+			if Players[v] ~= speaker and Players[v].Character:FindFirstChild('HumanoidRootPart') then
+				local sizeArg = tonumber(args[2])
+				local Size = Vector3.new(sizeArg,sizeArg,sizeArg)
+				local Root = Players[v].Character:FindFirstChild('HumanoidRootPart')
+				if Root:IsA("BasePart") then
+					if not args[2] or sizeArg == 1 then
+						Root.Size = Vector3.new(2,1,1)
+						Root.Transparency = 0.4
+					else
+						Root.Size = Size
+						Root.Transparency = 0.4
+					end
 				end
 			end
 		end
+	
 	end
 end)
 
